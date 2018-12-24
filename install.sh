@@ -13,6 +13,8 @@ if [[ -d $EST_HOME ]]
 then
     echo "you have already $EST_HOME"
     exit
+else
+    mkdir $EST_HOME
 fi
 git clone https://github.com/esthelpers/est $EST_HOME > /dev/null
 
