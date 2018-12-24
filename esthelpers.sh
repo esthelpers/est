@@ -34,7 +34,7 @@ est_download(){
     echo $EST_VENDOR/$EST_HELPER
     wget -O - -o /dev/null https://github.com/$EST_VENDOR/$EST_HELPER/archive/master.tar.gz > /tmp/estmaster.tar.gz
     mkdir -p $EST_HELPERS_DIR/$EST_VENDOR/
-    tar -xvf /tmp/estmaster.tar.gz -C $EST_HELPERS_DIR/$EST_VENDOR/$EST_HELPER
+    tar -xvf /tmp/estmaster.tar.gz -C $EST_HELPERS_DIR/$EST_VENDOR/
     mv $EST_HELPERS_DIR/$EST_VENDOR/$EST_HELPER{-master,}
 }
 est_install(){
