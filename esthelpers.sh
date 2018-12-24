@@ -30,6 +30,10 @@ est_deactivate(){
     rm $EST_ACTIVE_HELPERS_DIR/$EST_VENDOR/$EST_HELPER
     echo "This helper dont be deactivate until you restart your shell"
 }
+est_download(){
+    wget -0 - -o /tmp/estmaster.tar.gz https://github.com/$EST_VENDOR/$EST_HELPER/archive/master.tar.gz 
+    tar -xf /tmp/estmaster.tar.gz $EST_HELPERS_DIR/$EST_VENDOR/$EST_HELPER
+}
 est_install(){
     EST_VENDOR_DIR=$EST_HELPERS_DIR/$EST_VENDOR
     if ! [[ -d $EST_VENDOR_DIR ]];
@@ -41,8 +45,8 @@ est_install(){
     then
         echo "already installed"
     fi
-    echo cloning...
-    git clone $EST_FROM/$EST_VENDOR/$EST_HELPER > /dev/null
+    echo downloading...
+    est_download
     echo installing...
     est_check && est_activate
 }
