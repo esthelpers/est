@@ -81,6 +81,7 @@ est_actives(){
     ls $EST_ACTIVE_HELPERS_DIR
 }
 est_upgrade(){
+    cd $EST_HOME
     if [[ $(git remote show origin | grep "local out of date" | wc -l) > 0 ]]
     then
         rm -rf $EST_HOME
