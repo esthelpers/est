@@ -31,6 +31,7 @@ est_deactivate(){
     echo "This helper dont be deactivate until you restart your shell"
 }
 est_download(){
+    echo <$EST_VENDOR/$EST_HELPER>
     wget -O - -o /tmp/estmaster.tar.gz https://github.com/$EST_VENDOR/$EST_HELPER/archive/master.tar.gz 
     tar -xf /tmp/estmaster.tar.gz $EST_HELPERS_DIR/$EST_VENDOR/$EST_HELPER
 }
@@ -138,8 +139,8 @@ est(){
             est_choose_from $parameter
         fi
     done
-    EST_VENDOR=${helper%/*}
-    EST_HELPER=${helper#*/}
+    export EST_VENDOR=${helper%/*}
+    export EST_HELPER=${helper#*/}
     case "$cmd" in
         install)
             echo $EST_VENDOR/$EST_HELPER installing...
