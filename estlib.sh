@@ -28,9 +28,9 @@ est_source(){
         then
             return 1
         fi
+        export $EST_VENDOR"_"$EST_HELPER=$EST_HELPERS_DIR/$EST_VENDOR/$EST_HELPER
         source $EST_HELPERS_DIR/$EST_VENDOR/$EST_HELPER/est.sh
         EST_SOURCED_HELPERS=($EST_SOURCED_HELPERS $EST_VENDOR/$EST_HELPER)
-        export $EST_VENDOR"_"$EST_HELPER=$EST_HELPERS_DIR/$EST_VENDOR/$EST_HELPER
     fi
 }
 est_resource()
