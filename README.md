@@ -8,6 +8,7 @@
   * est edit vendor/helper  
    
   * est version
+  * est upgrade 
   * est actives
   * est help
   

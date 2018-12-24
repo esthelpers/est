@@ -59,7 +59,11 @@ est_session(){
         done
     done
 }
-est_session $HOME/.config/est/activehelpers.list
-
-
-
+est_session 
+est_upgrade(){
+    if [[ $(git remote show origin | grep "local out of date" | wc -l) > 0 ]]
+    then
+        rm -rf $EST_HOME
+        $(wget -O - -o /dev/null https://raw.githubusercontent.com/esthelpers/est/master/install.sh | bash > /dev/null)
+    fi
+}

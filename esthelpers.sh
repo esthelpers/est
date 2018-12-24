@@ -111,6 +111,13 @@ est_rcfile(){
 est_actives(){
     ls $EST_ACTIVE_HELPERS_DIR
 }
+est_upgrade(){
+    if [[ $(git remote show origin | grep "local out of date" | wc -l) > 0 ]]
+    then
+        rm -rf $EST_HOME
+        $(wget -O - -o /dev/null https://raw.githubusercontent.com/esthelpers/est/master/install.sh | bash > /dev/null)
+    fi
+}
 est(){
     if [[ $# == 1 ]];
     then
@@ -121,8 +128,11 @@ est(){
             version)
                 est_version
                 ;;
-            active)
+            actives)
                 est_actives
+                ;;
+            upgrade)
+                est_upgrade
                 ;;
             *)
                 est_help
