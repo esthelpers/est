@@ -104,6 +104,10 @@ est_upgrade(){
 est_initialize(){
     return 0
 }
+home(){
+    export 
+
+}
 est(){
     if [[ $# == 1 ]];
     then
@@ -180,6 +184,9 @@ est(){
             ;;
         edit)
             est_edit
+            ;;
+        home)
+            est_home
             ;;
         *)
             est_help
