@@ -85,7 +85,13 @@ est_rcfile(){
     echo $EST_HELPERS_DIR/$EST_VENDOR/$EST_HELPER/est.sh
 }
 est_actives(){
-    ls $EST_ACTIVE_HELPERS_DIR
+    for vendor in $(ls $EST_ACTIVE_HELPERS_DIR)
+    do
+        for helper in $(ls $EST_ACTIVE_HELPERS_DIR/$vendor)
+        do 
+            echo $vendor/$helper
+        done
+    done
 }
 est_upgrade(){
 
