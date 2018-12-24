@@ -32,8 +32,8 @@ est_deactivate(){
 }
 est_download(){
     echo $EST_VENDOR/$EST_HELPER
-    wget -O - -o /tmp/estmaster.tar.gz https://github.com/$EST_VENDOR/$EST_HELPER/archive/master.tar.gz 
-    tar -xf /tmp/estmaster.tar.gz $EST_HELPERS_DIR/$EST_VENDOR/$EST_HELPER
+    wget -O - -o /dev/null https://github.com/$EST_VENDOR/$EST_HELPER/archive/master.tar.gz > /tmp/estmaster.tar.gz
+    tar -xvf /tmp/estmaster.tar.gz $EST_HELPERS_DIR/$EST_VENDOR/$EST_HELPER
 }
 est_install(){
     EST_VENDOR_DIR=$EST_HELPERS_DIR/$EST_VENDOR
