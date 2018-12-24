@@ -4,20 +4,9 @@ if [[ -z $EST_HOME ]];
 then 
     EST_HOME="$HOME/.env"
 fi
+
+source $EST_HOME/variables.sh
 source $EST_HOME/estlib.sh
-alias fine="[[ \$? == 0 ]]"
-if ! [[ -d $EST_CONFIG ]];
-then
-    mkdir $EST_CONFIG
-fi
-if ! [[ -d $EST_HELPERS_DIR ]];
-then
-    mkdir $EST_HELPERS_DIR
-fi
-if ! [[ -d $EST_ACTIVE_HELPERS_DIR ]];
-then
-    mkdir $EST_ACTIVE_HELPERS_DIR
-fi
 
 if [[ $(which git | wc -l) == 0 ]];
 then

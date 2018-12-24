@@ -1,13 +1,11 @@
-if [[ -z $EST_HOME ]]
-then
-    EST_HOME="$HOME/.est"
+if [[ -z $EST_HOME ]];
+then 
+    EST_HOME="$HOME/.env"
 fi
-PATH="$PATH:$EST_HOME/bin"
-EST_CONFIG=$HOME/.config/est
-EST_HELPERS_DIR=$EST_CONFIG/helpers
-EST_ACTIVE_HELPERS_DIR=$EST_CONFIG/active_helpers
-EST_FROM="https://github.com/"
+
+source $EST_HOME/variables.sh
 export EST_SOURCED_HELPERS=()
+
 est_check(){
     if ! [[ -e $EST_HELPERS_DIR/$EST_VENDOR/$EST_HELPER ]]
     then
