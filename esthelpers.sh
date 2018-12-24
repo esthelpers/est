@@ -147,7 +147,12 @@ est(){
             est_choose_from $parameter
         fi
     done
-    export EST_VENDOR=${helper%/*}
+    if [[ $helper =~ ^.*/.*$ ]]
+    then
+        export EST_VENDOR=${helper%/*}
+    else
+        export EST_VENDOR="esthelpers"
+    fi
     export EST_HELPER=${helper#*/}
     case "$cmd" in
         install)
