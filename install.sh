@@ -24,5 +24,6 @@ mkdir $EST_HOME/bin
 ln -sf $EST_HOME/esthelpers.sh $EST_HOME/bin/est
 est initialize
 echo "# put this source in your rc file"
+echo "export EST_EDITOR=vim"
 echo "export EST_HOME=\$HOME/.est"
 echo "source \$EST_HOME/estlib.sh"

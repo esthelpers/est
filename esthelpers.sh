@@ -23,7 +23,7 @@ est_activate(){
     then
         ln -sf $EST_HELPERS_DIR/$EST_VENDOR/$EST_HELPER $EST_ACTIVE_HELPERS_DIR/$EST_VENDOR/;
         echo $EST_VENDOR/$EST_HELPER activated
-        est_source
+        echo "This helper dont be activate until you restart your shell"
     fi
 }
 est_deactivate(){
@@ -51,7 +51,7 @@ est_install(){
     echo downloading...
     est_download
     echo installing...
-    est_check && est_activate
+    est_activate
 }
 est_remove(){
     est_deactivate
@@ -162,7 +162,7 @@ est(){
         reinstall)
             est_remove
             est_install
-            echo $EST_VENDOR/$EST_HELPER upgraded
+            echo $EST_VENDOR/$EST_HELPER reinstalled
             ;;
         rcfile)
             est_rcfile

@@ -2,6 +2,7 @@
   
   * est install vendor/helper  
   * est remove vendor/helper  
+  * est reinstall vendor/helper  
   * est activate vendor/helper  
   * est deactivate vendor/helper  
   * est rcfile vendor/helper  
@@ -23,3 +24,7 @@ it download github repo's and source if it has `est.sh`
 ```
 wget -O - -o /dev/null https://raw.githubusercontent.com/esthelpers/est/master/install.sh | bash
 ```
+### add to rc file
+export EST_EDITOR=vim  
+export EST_HOME=$HOME/.est  
+source $EST_HOME/estlib.sh  
