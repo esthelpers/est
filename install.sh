@@ -18,6 +18,7 @@ git clone https://github.com/esthelpers/est $EST_HOME > /dev/null
 
 
 chmod +x $EST_HOME/esthelpers.sh
+mkdir $EST_HOME/bin
 ln -sf $EST_HOME/esthelpers.sh $EST_HOME/bin/est
 echo "# put this source in your rc file"
 echo "export EST_HOME=\$HOME/.est"
