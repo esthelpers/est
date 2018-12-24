@@ -31,7 +31,7 @@ est_deactivate(){
     echo "This helper dont be deactivate until you restart your shell"
 }
 est_download(){
-    wget -0 - -o /tmp/estmaster.tar.gz https://github.com/$EST_VENDOR/$EST_HELPER/archive/master.tar.gz 
+    wget -O - -o /tmp/estmaster.tar.gz https://github.com/$EST_VENDOR/$EST_HELPER/archive/master.tar.gz 
     tar -xf /tmp/estmaster.tar.gz $EST_HELPERS_DIR/$EST_VENDOR/$EST_HELPER
 }
 est_install(){
