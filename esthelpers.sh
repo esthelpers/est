@@ -10,11 +10,6 @@ if ! [[ -d $EST_CONFIG ]];
 then
     mkdir $EST_CONFIG
 fi
-if ! [[ -e $EST_CONFIG/README.md ]];
-then
-    cp $EST_APP/README.md $EST_CONFIG/README.md
-fi
-
 if ! [[ -d $EST_HELPERS_DIR ]];
 then
     mkdir $EST_HELPERS_DIR
@@ -29,21 +24,6 @@ then
     echo "EST is dependent to git if you want to use first install git"
     exit
 fi
-if [[ -d $EST_CONFIG ]]
-then
-    mkdir $EST_CONFIG
-fi
-
-if [[ -d $EST_HELPERS_DIR ]]
-then
-    mkdir $EST_HELPERS_DIR
-fi
-
-if [[ -d $EST_ACTIVE_HELPERS_DIR ]]
-then
-    mkdir $EST_ACTIVE_HELPERS_DIR
-fi
-
 est_activate(){
     if ! [[ -d $EST_ACTIVE_HELPERS_DIR/$EST_VENDOR/ ]]
     then
