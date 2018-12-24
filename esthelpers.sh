@@ -118,6 +118,9 @@ est_upgrade(){
         $(wget -O - -o /dev/null https://raw.githubusercontent.com/esthelpers/est/master/install.sh | bash > /dev/null)
     fi
 }
+est_initialize(){
+    return 0
+}
 est(){
     if [[ $# == 1 ]];
     then
@@ -133,6 +136,9 @@ est(){
                 ;;
             upgrade)
                 est_upgrade
+                ;;
+            initialize)
+                est_initialize
                 ;;
             *)
                 est_help
