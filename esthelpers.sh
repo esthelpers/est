@@ -2,7 +2,7 @@
 set -e
 if [[ -z $EST_HOME ]];
 then 
-   EST_HOME="$HOME/.env"
+    EST_HOME="$HOME/.env"
 fi
 source $EST_HOME/estlib.sh
 alias fine="[[ \$? == 0 ]]"
@@ -29,6 +29,21 @@ then
     echo "EST is dependent to git if you want to use first install git"
     exit
 fi
+if [[ -d $EST_CONFIG ]]
+then
+    mkdir $EST_CONFIG
+fi
+
+if [[ -d $EST_HELPERS_DIR ]]
+then
+    mkdir $EST_HELPERS_DIR
+fi
+
+if [[ -d $EST_ACTIVE_HELPERS_DIR ]]
+then
+    mkdir $EST_ACTIVE_HELPERS_DIR
+fi
+
 est_activate(){
     if ! [[ -d $EST_ACTIVE_HELPERS_DIR/$EST_VENDOR/ ]]
     then
@@ -91,7 +106,7 @@ est_edit(){
     fi
 }
 est_rcfile(){
-        echo $EST_HELPERS_DIR/$EST_VENDOR/$EST_HELPER/est.sh
+    echo $EST_HELPERS_DIR/$EST_VENDOR/$EST_HELPER/est.sh
 }
 est_actives(){
     ls $EST_ACTIVE_HELPERS_DIR
