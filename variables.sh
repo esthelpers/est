@@ -20,4 +20,3 @@ if ! [[ -d $EST_ACTIVE_HELPERS_DIR ]];
 then
     mkdir $EST_ACTIVE_HELPERS_DIR
 fi
-source $EST_HOME/estlib.sh
