@@ -85,39 +85,30 @@ est(){
                 ;;
         esac
 
-    elif [[ $# < 2 ]];
+    elif [[ $# == 2 ]];
     then
-        echo "EST gets at least two parameters"
-        est_help
-    fi
 
-    cmd=$1
-    helper=$1
-    for additional in $@;do
-        if [[ ${additional%:*} == from ]];
+        cmd=$1
+        helper=$2
+        if [[ $helper =~ ^.*/.*$ ]]
         then
-            parameter=${additional#*:}
-            est_choose_from $parameter
+            export EST_VENDOR=${helper%/*}
+        else
+            export EST_VENDOR="esthelpers"
         fi
-    done
-    if [[ $helper =~ ^.*/.*$ ]]
-    then
-        export EST_VENDOR=${helper%/*}
-    else
-        export EST_VENDOR="esthelpers"
+        export EST_HELPER=${helper#*/}
+        case "$cmd" in
+            activate)
+                est_activate
+                ;;
+            deactivate)
+                est_deactivate
+                ;;
+            *)
+                esthelpers $@
+                ;;
+        esac
     fi
-    export EST_HELPER=${helper#*/}
-    case "$cmd" in
-        activate)
-            est_activate
-            ;;
-        deactivate)
-            est_deactivate
-            ;;
-        *)
-            esthelpers $@
-            ;;
-    esac
 }
 est_session 
 
