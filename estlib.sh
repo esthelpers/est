@@ -86,8 +86,7 @@ est(){
                 ;;
         esac
 
-    fi
-    if [[ $# < 2 ]];
+    elif [[ $# < 2 ]];
     then
         echo "EST gets at least two parameters"
         est_help
