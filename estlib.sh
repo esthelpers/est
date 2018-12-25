@@ -85,7 +85,6 @@ est(){
                 esthelpers $@
                 ;;
         esac
-        exit
 
     fi
     if [[ $# < 2 ]];
@@ -118,7 +117,6 @@ est(){
             ;;
         deactivate)
             est_deactivate
-            echo $EST_VENDOR/$EST_HELPER deactivated
             ;;
         *)
             esthelpers $@
