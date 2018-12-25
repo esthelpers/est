@@ -84,7 +84,7 @@ est_deactivate(){
 }
 est(){
 
-    if [[ $# > 1]] && [[ $1 == silent ]];
+    if [[ $# > 1 ]] && [[ $1 == silent ]];
     then
         export EST_SILENT=1
         shift
