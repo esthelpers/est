@@ -7,7 +7,7 @@ source $EST_HOME/variables.sh
 export EST_SOURCED_HELPERS=()
 
 est_echo(){
-    if ! [[ $EST_SILENT == 1 ]]
+    if ! [[ $EST_SILENT == 1 ]];
     then
         echo $@
     fi
@@ -84,12 +84,12 @@ est_deactivate(){
 }
 est(){
 
-    if [[ $# > 1]] && [[ $1 == silent ]]
+    if [[ $# > 1]] && [[ $1 == silent ]];
     then
-        $EST_SILENT=1
+        export EST_SILENT=1
         shift
     else
-        $EST_SILENT=0
+        export EST_SILENT=0
     fi
     if [[ $# == 1 ]];
     then

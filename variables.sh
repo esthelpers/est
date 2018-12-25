@@ -7,7 +7,7 @@ EST_CONFIG=$HOME/.config/est
 EST_HELPERS_DIR=$EST_CONFIG/helpers
 EST_ACTIVE_HELPERS_DIR=$EST_CONFIG/active_helpers
 EST_FROM="https://github.com/"
-
+EST_SILENT=0
 if ! [[ -d $EST_CONFIG ]];
 then
     mkdir $EST_CONFIG
