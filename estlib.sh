@@ -6,17 +6,24 @@ fi
 source $EST_HOME/variables.sh
 export EST_SOURCED_HELPERS=()
 
+est_echo(){
+    if ! [[ $EST_SILENT == 1 ]]
+    then
+        echo $@
+    fi
+}
+
 est_check(){
     if ! [[ -e $EST_HELPERS_DIR/$EST_VENDOR/$EST_HELPER ]]
     then
-        echo "$EST_VENDOR/$EST_HELPER is not installed EST package"
+        est_echo "$EST_VENDOR/$EST_HELPER is not installed EST package"
         return 2
     fi
     if [[ -e $EST_HELPERS_DIR/$EST_VENDOR/$EST_HELPER/est.sh ]]
     then
         return 0
     else
-        echo "$EST_VENDOR/$EST_HELPER is not valid EST package"
+        est_echo "$EST_VENDOR/$EST_HELPER is not valid EST package"
         return 1
     fi
 }
@@ -43,7 +50,7 @@ est_resource()
             source $EST_HELPERS_DIR/$EST_VENDOR/$EST_HELPER
         fi
     else
-        echo "this lib is not sourced"
+        est_echo "this lib is not sourced"
     fi
 }
 est_session(){
@@ -66,16 +73,24 @@ est_activate(){
     if [[ $? == 0 ]]
     then
         ln -sf $EST_HELPERS_DIR/$EST_VENDOR/$EST_HELPER $EST_ACTIVE_HELPERS_DIR/$EST_VENDOR/;
-        echo $EST_VENDOR/$EST_HELPER activated
         est_source
+        echo $EST_VENDOR/$EST_HELPER activated
     fi
 }
 est_deactivate(){
     rm $EST_ACTIVE_HELPERS_DIR/$EST_VENDOR/$EST_HELPER
-    echo $EST_VENDOR/$EST_HELPER deactivated
-    echo "This helper dont be deactivate until you restart your shell"
+    est_echo $EST_VENDOR/$EST_HELPER deactivated
+    est_echo "This helper dont be deactivate until you restart your shell"
 }
 est(){
+
+    if [[ $# > 1]] && [[ $1 == silent ]]
+    then
+        $EST_SILENT=1
+        shift
+    else
+        $EST_SILENT=0
+    fi
     if [[ $# == 1 ]];
     then
         cmd=$1
@@ -98,6 +113,10 @@ est(){
         fi
         export EST_HELPER=${helper#*/}
         case "$cmd" in
+            install)
+                esthelpers $@
+                est_activate
+                ;;
             activate)
                 est_activate
                 ;;
@@ -110,5 +129,4 @@ est(){
         esac
     fi
 }
-est_session 
 

@@ -28,3 +28,4 @@ wget -O - -o /dev/null https://raw.githubusercontent.com/esthelpers/est/master/i
 export EST_EDITOR=vim  
 export EST_HOME=$HOME/.est  
 source $EST_HOME/estlib.sh  
+est_session

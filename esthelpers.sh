@@ -10,12 +10,12 @@ source $EST_HOME/estlib.sh
 
 if [[ $(which git | wc -l) == 0 ]];
 then
-    echo "EST is dependent to git if you want to use first install git"
+    est_echo "EST is dependent to git if you want to use first install git"
     exit
 fi
 
 est_download(){
-    echo $EST_VENDOR/$EST_HELPER
+    est_echo $EST_VENDOR/$EST_HELPER
     wget -O - -o /dev/null https://github.com/$EST_VENDOR/$EST_HELPER/archive/master.tar.gz > /tmp/estmaster.tar.gz
     mkdir -p $EST_HELPERS_DIR/$EST_VENDOR/
     tar -xvf /tmp/estmaster.tar.gz -C $EST_HELPERS_DIR/$EST_VENDOR/
@@ -30,12 +30,11 @@ est_install(){
     builtin cd $EST_VENDOR_DIR
     if [[ -d $EST_HELPER ]]
     then
-        echo "already installed"
+        est_echo "already installed"
     fi
-    echo downloading...
+    est_echo downloading...
     est_download
-    echo installing...
-    est_activate
+    est_echo installing...
 }
 est_remove(){
     est_deactivate
@@ -62,18 +61,18 @@ est_edit(){
     then
         $EST_EDITOR $EST_HELPERS_DIR/$EST_VENDOR/$EST_HELPER/est.sh
     else
-        echo "your EST_EDITOR variable is unset"
+        est_echo "your EST_EDITOR variable is unset"
     fi
 }
 est_rcfile(){
-    echo $EST_HELPERS_DIR/$EST_VENDOR/$EST_HELPER/est.sh
+    est_echo $EST_HELPERS_DIR/$EST_VENDOR/$EST_HELPER/est.sh
 }
 est_actives(){
     for vendor in $(ls $EST_ACTIVE_HELPERS_DIR)
     do
         for helper in $(ls $EST_ACTIVE_HELPERS_DIR/$vendor)
         do 
-            echo $vendor/$helper
+            est_echo $vendor/$helper
         done
     done
 }
@@ -114,7 +113,7 @@ est_prog(){
         exit
     elif [[ $# < 2 ]];
     then
-        echo "EST gets at least two parameters"
+        est_echo "EST gets at least two parameters"
         est_help
     fi
 
@@ -138,17 +137,17 @@ est_prog(){
     export EST_HELPER=${helper#*/}
     case "$cmd" in
         install)
-            echo $EST_VENDOR/$EST_HELPER installing...
+            est_echo $EST_VENDOR/$EST_HELPER installing...
             est_install
             ;;
         remove)
-            echo $EST_VENDOR/$EST_HELPER removing...
+            est_echo $EST_VENDOR/$EST_HELPER removing...
             est_remove
             ;;
         reinstall)
             est_remove
             est_install
-            echo $EST_VENDOR/$EST_HELPER reinstalled
+            est_echo $EST_VENDOR/$EST_HELPER reinstalled
             ;;
         rcfile)
             est_rcfile
