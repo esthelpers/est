@@ -74,7 +74,7 @@ est_activate(){
     then
         ln -sf $EST_HELPERS_DIR/$EST_VENDOR/$EST_HELPER $EST_ACTIVE_HELPERS_DIR/$EST_VENDOR/;
         est_source
-        echo $EST_VENDOR/$EST_HELPER activated
+        est_echo $EST_VENDOR/$EST_HELPER activated
     fi
 }
 est_deactivate(){
