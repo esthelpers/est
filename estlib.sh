@@ -79,7 +79,6 @@ est(){
     if [[ $# == 1 ]];
     then
         cmd=$1
-        shift
         case "$cmd" in
             *)
                 esthelpers $@
@@ -93,9 +92,7 @@ est(){
     fi
 
     cmd=$1
-    shift
     helper=$1
-    shift
     for additional in $@;do
         if [[ ${additional%:*} == from ]];
         then
