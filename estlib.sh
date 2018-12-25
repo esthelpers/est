@@ -46,7 +46,6 @@ est_resource()
         echo "this lib is not sourced"
     fi
 }
-
 est_session(){
     for vendor in $(ls $EST_ACTIVE_HELPERS_DIR);
     do
@@ -57,6 +56,74 @@ est_session(){
             est_source
         done
     done
+}
+est_activate(){
+    if ! [[ -d $EST_ACTIVE_HELPERS_DIR/$EST_VENDOR/ ]]
+    then
+        mkdir $EST_ACTIVE_HELPERS_DIR/$EST_VENDOR
+    fi
+    est_check 
+    if [[ $? == 0 ]]
+    then
+        ln -sf $EST_HELPERS_DIR/$EST_VENDOR/$EST_HELPER $EST_ACTIVE_HELPERS_DIR/$EST_VENDOR/;
+        echo $EST_VENDOR/$EST_HELPER activated
+        est_source
+    fi
+}
+est_deactivate(){
+    rm $EST_ACTIVE_HELPERS_DIR/$EST_VENDOR/$EST_HELPER
+    echo $EST_VENDOR/$EST_HELPER deactivated
+    echo "This helper dont be deactivate until you restart your shell"
+}
+est(){
+    if [[ $# == 1 ]];
+    then
+        cmd=$1
+        shift
+        case "$cmd" in
+            *)
+                esthelpers $@
+                ;;
+        esac
+        exit
+
+    fi
+    if [[ $# < 2 ]];
+    then
+        echo "EST gets at least two parameters"
+        est_help
+    fi
+
+    cmd=$1
+    shift
+    helper=$1
+    shift
+    for additional in $@;do
+        if [[ ${additional%:*} == from ]];
+        then
+            parameter=${additional#*:}
+            est_choose_from $parameter
+        fi
+    done
+    if [[ $helper =~ ^.*/.*$ ]]
+    then
+        export EST_VENDOR=${helper%/*}
+    else
+        export EST_VENDOR="esthelpers"
+    fi
+    export EST_HELPER=${helper#*/}
+    case "$cmd" in
+        activate)
+            est_activate
+            ;;
+        deactivate)
+            est_deactivate
+            echo $EST_VENDOR/$EST_HELPER deactivated
+            ;;
+        *)
+            esthelpers $@
+            ;;
+    esac
 }
 est_session 
 

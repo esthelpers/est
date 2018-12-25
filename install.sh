@@ -21,7 +21,7 @@ $(git clone https://github.com/esthelpers/est $EST_HOME > /dev/null)
 
 chmod +x $EST_HOME/esthelpers.sh
 mkdir $EST_HOME/bin
-ln -sf $EST_HOME/esthelpers.sh $EST_HOME/bin/est
+ln -sf $EST_HOME/esthelpers.sh $EST_HOME/bin/esthelpers
 est initialize
 echo "# put this source in your rc file"
 echo "export EST_EDITOR=vim"

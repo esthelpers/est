@@ -13,23 +13,7 @@ then
     echo "EST is dependent to git if you want to use first install git"
     exit
 fi
-est_activate(){
-    if ! [[ -d $EST_ACTIVE_HELPERS_DIR/$EST_VENDOR/ ]]
-    then
-        mkdir $EST_ACTIVE_HELPERS_DIR/$EST_VENDOR
-    fi
-    est_check 
-    if [[ $? == 0 ]]
-    then
-        ln -sf $EST_HELPERS_DIR/$EST_VENDOR/$EST_HELPER $EST_ACTIVE_HELPERS_DIR/$EST_VENDOR/;
-        echo $EST_VENDOR/$EST_HELPER activated
-        echo "This helper dont be activate until you restart your shell"
-    fi
-}
-est_deactivate(){
-    rm $EST_ACTIVE_HELPERS_DIR/$EST_VENDOR/$EST_HELPER
-    echo "This helper dont be deactivate until you restart your shell"
-}
+
 est_download(){
     echo $EST_VENDOR/$EST_HELPER
     wget -O - -o /dev/null https://github.com/$EST_VENDOR/$EST_HELPER/archive/master.tar.gz > /tmp/estmaster.tar.gz
@@ -104,7 +88,7 @@ est_upgrade(){
 est_initialize(){
     return 0
 }
-est(){
+est_prog(){
     if [[ $# == 1 ]];
     then
         case "$1" in
@@ -163,13 +147,6 @@ est(){
             echo $EST_VENDOR/$EST_HELPER removing...
             est_remove
             ;;
-        activate)
-            est_activate
-            ;;
-        deactivate)
-            est_deactivate
-            echo $EST_VENDOR/$EST_HELPER deactivated
-            ;;
         reinstall)
             est_remove
             est_install
@@ -186,4 +163,4 @@ est(){
             ;;
     esac
 }
-est $@
+est_prog $@
