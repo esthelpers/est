@@ -1,6 +1,6 @@
 if [[ -z $EST_HOME ]];
 then 
-    EST_HOME="$HOME/.env"
+    EST_HOME="$HOME/.est"
 fi
 
 source $EST_HOME/variables.sh

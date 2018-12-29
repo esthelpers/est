@@ -16,7 +16,7 @@ then
 else
     mkdir $EST_HOME
 fi
-$(git clone https://github.com/esthelpers/est $EST_HOME > /dev/null)
+git clone https://github.com/esthelpers/est $EST_HOME 
 
 
 chmod +x $EST_HOME/esthelpers.sh
