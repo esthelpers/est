@@ -1,7 +1,7 @@
 FROM ubuntu:latest
 RUN apt update
 RUN apt install -y git wget
-
+RUN echo echoo
 RUN wget -O - -o /dev/null https://raw.githubusercontent.com/esthelpers/est/master/install.sh | bash
 
 RUN echo 'export EST_EDITOR=vim' >> $HOME/.bashrc

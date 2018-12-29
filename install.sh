@@ -16,7 +16,7 @@ then
 else
     mkdir -p $EST_HOME
 fi
-$(git clone https://github.com/esthelpers/est $EST_HOME/helpers/esthelpers/est > /dev/null)
+$(git clone https://github.com/esthelpers/est $EST_HOME > /dev/null)
 echo "# put this source in your rc file"
 echo "export EST_EDITOR=vim"
 echo "export EST_HOME=\$HOME/.config/est/helpers/esthelpers/est"
