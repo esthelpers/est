@@ -73,9 +73,12 @@ est_activate(){
     fi
 }
 est_deactivate(){
-    rm $EST_ACTIVE_HELPERS_DIR/$EST_VENDOR/$EST_HELPER
-    est_echo $EST_VENDOR/$EST_HELPER deactivated
-    est_echo "This helper dont be deactivate until you restart your shell"
+    if [[ -d $EST_ACTIVE_HELPERS_DIR/$EST_VENDOR/$EST_HELPER/ ]]
+    then
+        rm $EST_ACTIVE_HELPERS_DIR/$EST_VENDOR/$EST_HELPER
+        est_echo $EST_VENDOR/$EST_HELPER deactivated
+        est_echo "This helper dont be deactivate until you restart your shell"
+    fi
 }
 est(){
 
