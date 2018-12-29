@@ -1,18 +1,7 @@
 #!/bin/bash
 set -e
-if [[ -z $EST_HOME ]];
-then 
-    EST_HOME="$HOME/.env"
-fi
-
 source $EST_HOME/variables.sh
 source $EST_HOME/estlib.sh
-
-if [[ $(which git | wc -l) == 0 ]];
-then
-    est_echo "EST is dependent to git if you want to use first install git"
-    exit
-fi
 
 est_download(){
     est_echo $EST_VENDOR/$EST_HELPER

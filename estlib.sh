@@ -1,8 +1,3 @@
-if [[ -z $EST_HOME ]];
-then 
-    EST_HOME="$HOME/.est"
-fi
-
 source $EST_HOME/variables.sh
 export EST_SOURCED_HELPERS=()
 
@@ -96,7 +91,7 @@ est(){
         cmd=$1
         case "$cmd" in
             *)
-                esthelpers $@
+                esthelpers.sh $@
                 ;;
         esac
 
@@ -114,7 +109,7 @@ est(){
         export EST_HELPER=${helper#*/}
         case "$cmd" in
             install)
-                esthelpers $@
+                esthelpers.sh $@
                 est_activate
                 ;;
             activate)
@@ -124,7 +119,7 @@ est(){
                 est_deactivate
                 ;;
             *)
-                esthelpers $@
+                esthelpers.sh $@
                 ;;
         esac
     fi

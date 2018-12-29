@@ -7,23 +7,17 @@ fi
 cd $HOME
 if [[ -z $EST_HOME ]]
 then
-    export EST_HOME=$HOME/.est
+    export EST_HOME=$HOME/.config/est/helpers/esthelpers/est
 fi
 if [[ -d $EST_HOME ]]
 then
     echo "you have already $EST_HOME"
     exit
 else
-    mkdir $EST_HOME
+    mkdir -p $EST_HOME
 fi
-git clone https://github.com/esthelpers/est $EST_HOME 
-
-
-chmod +x $EST_HOME/esthelpers.sh
-mkdir $EST_HOME/bin
-ln -sf $EST_HOME/esthelpers.sh $EST_HOME/bin/esthelpers
-est initialize
+$(git clone https://github.com/esthelpers/est $EST_HOME/helpers/esthelpers/est > /dev/null)
 echo "# put this source in your rc file"
 echo "export EST_EDITOR=vim"
-echo "export EST_HOME=\$HOME/.est"
+echo "export EST_HOME=\$HOME/.config/est/helpers/esthelpers/est"
 echo "source \$EST_HOME/estlib.sh"
