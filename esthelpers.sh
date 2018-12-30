@@ -17,13 +17,23 @@ est_install(){
         mkdir $EST_VENDOR_DIR
     fi
     builtin cd $EST_VENDOR_DIR
-    if [[ -d $EST_HELPER ]]
+    
+    if [[ $EST_VENDOR == 'local' ]]
     then
-        est_echo "already installed"
+        if [[ -d $(basename $EST_HELPER) ]]
+        then
+            est_echo "already installed"
+        fi
+        cp $EST_HELPER $EST_VENDOR_DIR
+    else
+        if [[ -d $EST_HELPER ]]
+        then
+            est_echo "already installed"
+        fi
+        est_echo downloading...
+        est_download
+        est_echo installing...
     fi
-    est_echo downloading...
-    est_download
-    est_echo installing...
 }
 est_remove(){
     est_deactivate
@@ -120,7 +130,11 @@ est_prog(){
             est_choose_from $parameter
         fi
     done
-    if [[ $helper =~ ^.*/.*$ ]]
+    if [[ -d $helper ]]
+    then
+        export EST_VENDOR='local'
+        export EST_HELPER=$helper
+    elif [[ $helper =~ ^.*/.*$ ]]
     then
         export EST_VENDOR=${helper%/*}
     else
