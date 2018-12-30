@@ -24,7 +24,8 @@ est_install(){
         then
             est_echo "already installed"
         fi
-        cp $EST_HELPER $EST_VENDOR_DIR
+        mkdir $(basename $EST_HELPER)
+        cp $EST_HELPER/* $EST_VENDOR_DIR/$EST_HELPER/
     else
         if [[ -d $EST_HELPER ]]
         then
