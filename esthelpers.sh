@@ -48,7 +48,10 @@ est_choose_from(){
 est_edit(){
     if ! [[ -z $EST_EDITOR ]]
     then
+        cdir=$PWD
+        builtin cd $EST_HELPERS_DIR/$EST_VENDOR/$EST_HELPER/
         $EST_EDITOR $EST_HELPERS_DIR/$EST_VENDOR/$EST_HELPER/est.sh
+        builtin cd $cdir
     else
         est_echo "your EST_EDITOR variable is unset"
     fi
