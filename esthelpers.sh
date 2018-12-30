@@ -16,16 +16,16 @@ est_install(){
     then
         mkdir $EST_VENDOR_DIR
     fi
+    cdir=$PWD
     builtin cd $EST_VENDOR_DIR
     
     if [[ $EST_VENDOR == 'local' ]]
     then
-        if [[ -d $(basename $EST_HELPER) ]]
+        if [[ -d $EST_HELPER ]]
         then
             est_echo "already installed"
         fi
-        mkdir $(basename $EST_HELPER)
-        cp $EST_HELPER/* $EST_VENDOR_DIR/$EST_HELPER/
+        cp -r $cdir/$EST_HELPER $EST_VENDOR_DIR/$EST_HELPER
     else
         if [[ -d $EST_HELPER ]]
         then
@@ -134,15 +134,13 @@ est_prog(){
     if [[ -d $helper ]]
     then
         export EST_VENDOR='local'
-        export EST_HELPER=$helper
     elif [[ $helper =~ ^.*/.*$ ]]
     then
         export EST_VENDOR=${helper%/*}
-        export EST_HELPER=${helper#*/}
     else
         export EST_VENDOR="esthelpers"
-        export EST_HELPER=$helper
     fi
+    export EST_HELPER=${helper##*/}
     case "$cmd" in
         install)
             est_echo $EST_VENDOR/$EST_HELPER installing...
