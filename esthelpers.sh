@@ -137,10 +137,11 @@ est_prog(){
     elif [[ $helper =~ ^.*/.*$ ]]
     then
         export EST_VENDOR=${helper%/*}
+        export EST_HELPER=${helper#*/}
     else
         export EST_VENDOR="esthelpers"
+        export EST_HELPER=$helper
     fi
-    export EST_HELPER=${helper#*/}
     case "$cmd" in
         install)
             est_echo $EST_VENDOR/$EST_HELPER installing...
